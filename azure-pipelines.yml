@@ -16,6 +16,7 @@ steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 - task: CreatePullRequest@1
+  condition: False
   inputs:
     repoType: 'GitHub'
     githubEndpoint: 'Bensbush (1)'
@@ -27,7 +28,32 @@ steps:
     githubMergeStrategy: 'rebase'
     githubMergeCommitTitle: 'tester'
     githubMergeCommitMessage: 'Volomp'
-    
+- powershell: |
+    # construct base URLs
+    $apisUrl = "$($env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI)/$($env:SYSTEM_TEAMPROJECT)/_apis"
+    $projectUrl = "$apisUrl/git/repositories/Test"
+
+    $headers = @{}
+    $headers.Add("Authorization", "Bearer $env:SYSTEM_ACCESSTOKEN")
+    $headers.Add("Content-Type", "application/json")
+
+    # Create a Pull Request
+    $pullRequestUrl = "$projectUrl/pullrequests?api-version=5.1"
+    $pullRequest = @{
+            "sourceRefName" = "refs/heads/dev"
+            "targetRefName" = "refs/heads/master"
+            "title" = "Pull from dev to master"
+            "description" = ""
+        }
+
+    $pullRequestJson = ($pullRequest | ConvertTo-Json -Depth 5)
+
+    Write-Output "Sending a REST call to create a new pull request from develop to master"
+
+    # REST call to create a Pull Request
+    $pullRequestResult = Invoke-RestMethod -Method POST -Headers $headers -Body $pullRequestJson -Uri $pullRequestUrl;
+    $pullRequestId = $pullRequestResult.pullRequestId
+
 - script: |
     git fetch
     git push origin origin/master:dev -f
