@@ -1,5 +1,9 @@
 <<<<<<< master
+<<<<<<< master
 Test2
 =======
 Test
+>>>>>>> Update 2.txt
+=======
+Test2
 >>>>>>> Update 2.txt
