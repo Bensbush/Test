@@ -33,5 +33,5 @@ steps:
     git branch
     git status
     git fetch
-    git push origin master:dev -f
+    git push origin origin/master:dev -f
   displayName: 'Run a multi-line script'
