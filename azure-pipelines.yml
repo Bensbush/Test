@@ -49,7 +49,7 @@ steps:
     $pullRequestJson = ($pullRequest | ConvertTo-Json -Depth 5)
 
     Write-Output "Sending a REST call to create a new pull request from develop to master"
-
+    Write-Output "Invoke-RestMethod -Method POST -Headers $headers -Body $pullRequestJson -Uri $pullRequestUrl"
     # REST call to create a Pull Request
     $pullRequestResult = Invoke-RestMethod -Method POST -Headers $headers -Body $pullRequestJson -Uri $pullRequestUrl;
     $pullRequestId = $pullRequestResult.pullRequestId
