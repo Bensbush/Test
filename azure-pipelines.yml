@@ -30,8 +30,8 @@ steps:
     githubMergeCommitMessage: 'Volomp'
     
 - script: |
-    git branch
     git status
-    git fetch
+    git fetch    
+    git branch
     git push origin origin/master:dev -f
   displayName: 'Run a multi-line script'
