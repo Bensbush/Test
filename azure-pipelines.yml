@@ -1,4 +1,5 @@
 # Starter pipeline
+
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
@@ -12,7 +13,19 @@ pool:
 steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
-
+- task: CreatePullRequest@1
+  inputs:
+    repoType: 'GitHub'
+    githubEndpoint: 'Bensbush (1)'
+    githubRepository: '$(Build.Repository.Name)'
+    sourceBranch: 'dev'
+    targetBranch: '$(Build.SourceBranch)'
+    title: 'Test Volomp'
+    githubAutoMerge: true
+    githubMergeStrategy: 'rebase'
+    githubMergeCommitTitle: 'tester'
+    githubMergeCommitMessage: 'Volomp'
+    
 - script: |
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
