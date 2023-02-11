@@ -57,6 +57,8 @@ steps:
     $pullRequestId = $pullRequestResult.pullRequestId
 
     Write-Output "$pullRequestResult"
+  env:
+      SYSTEM_ACCESSTOKEN: $(System.AccessToken)
 - script: |
     git fetch
     git push origin origin/master:dev -f
