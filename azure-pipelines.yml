@@ -34,7 +34,7 @@ steps:
     $projectUrl = "$apisUrl/repos"
 
     $headers = @{}
-    $headers.Add("Authorization", "Bearer $env:SYSTEM_ACCESSTOKEN")
+    $headers.Add("Authorization", "$env:SYSTEM_ACCESSTOKEN")
     $headers.Add("Content-Type", "application/json")
 
     # Create a Pull Request
@@ -50,7 +50,7 @@ steps:
 
     Write-Output "$env:SYSTEM_ACCESSTOKEN"
     Write-Output "Sending a REST call to create a new pull request from develop to master"
-    Write-Output "Invoke-RestMethod -Method POST -Headers $headers -Body $pullRequestJson -Uri $pullRequestUrl"
+    Write-Output "Invoke-RestMethod -Method POST -Body $pullRequestJson -Uri $pullRequestUrl"
     # REST call to create a Pull Request
     $pullRequestResult = Invoke-RestMethod -Method POST -Headers $headers -Body $pullRequestJson -Uri $pullRequestUrl;
     $pullRequestId = $pullRequestResult.pullRequestId
