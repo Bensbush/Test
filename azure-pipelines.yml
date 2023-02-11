@@ -11,6 +11,8 @@ pool:
   vmImage: windows-latest
 
 steps:
+- checkout: self
+  persistCredentials: true
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 - task: CreatePullRequest@1
