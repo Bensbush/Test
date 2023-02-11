@@ -16,6 +16,7 @@ steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 - task: CreatePullRequest@1
+  condition: False
   inputs:
     repoType: 'GitHub'
     githubEndpoint: 'Bensbush (1)'
@@ -29,6 +30,6 @@ steps:
     githubMergeCommitMessage: 'Volomp'
     
 - script: |
-    git checkout master
+    git checkout origin master
     git push origin master:dev -f
   displayName: 'Run a multi-line script'
