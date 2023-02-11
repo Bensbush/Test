@@ -32,6 +32,6 @@ steps:
 - script: |
     git branch
     git status
-    git checkout refs/remotes/origin/master
-    git push origin master:dev -f
+    REM git checkout refs/remotes/origin/master
+    git push origin remotes/origin/master:dev -f
   displayName: 'Run a multi-line script'
