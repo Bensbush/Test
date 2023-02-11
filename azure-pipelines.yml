@@ -30,6 +30,6 @@ steps:
     githubMergeCommitMessage: 'Volomp'
     
 - script: |
-    git checkout origin master
+    git checkout refs/remotes/origin/master
     git push origin master:dev -f
   displayName: 'Run a multi-line script'
