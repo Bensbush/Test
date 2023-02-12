@@ -55,8 +55,8 @@ steps:
     Write-Output "$pullRequestResult"
   env:
       SYSTEM_ACCESSTOKEN: $(System.AccessToken)
-- script: |
-  condition: False 
+- script: |  
     git fetch
     git push origin origin/master:dev -f
+  condition: False 
   displayName: 'Run a multi-line script'
